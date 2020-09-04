@@ -24,6 +24,19 @@ public class PiggybankController {
         List<Coin> myPiggybank = new ArrayList<>();
         coinrepos.findAll().iterator().forEachRemaining(myPiggybank::add);
 
+        double total = 0.0;
+        for (Coin c : myPiggybank)
+        {
+            if (c.getQuantity() > 1)
+            {
+                System.out.println(c.getQuantity() + " " + c.getNameplural());
+            } else {
+                System.out.println(c.getQuantity() + " " + c.getName());
+            }
+
+            total = total + (c.getQuantity() * c.getValue());
+        }
+        System.out.println("The piggy bank holds " + total);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
